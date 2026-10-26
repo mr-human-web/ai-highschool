@@ -1,0 +1,11 @@
+*\.toc
+*\.out
+*\.log
+*\.aux
+*\.fls
+*\.bbl
+*\.blg
+*\.bbl
+*\.fdb_latexmk
+*\.synctex.gz
+*\.sta

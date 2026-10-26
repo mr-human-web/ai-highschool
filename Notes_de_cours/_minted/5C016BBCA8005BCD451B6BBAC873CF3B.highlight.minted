@@ -1,0 +1,27 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{torch}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{torch}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{nn}
+
+
+\PYG{k}{class}\PYG{+w}{ }\PYG{n+nc}{Simple\PYGZus{}MLP}\PYG{p}{(}\PYG{n}{nn}\PYG{o}{.}\PYG{n}{Module}\PYG{p}{):}
+    \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}
+        \PYG{n+nb+bp}{self}\PYG{p}{,}
+        \PYG{n}{input\PYGZus{}dim} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mi}{28} \PYG{o}{*} \PYG{l+m+mi}{28}\PYG{p}{),}
+        \PYG{n}{hidden\PYGZus{}dim} \PYG{o}{=} \PYG{l+m+mi}{512}\PYG{p}{,}
+        \PYG{n}{output\PYGZus{}dim} \PYG{o}{=} \PYG{l+m+mi}{10}
+        \PYG{p}{):}
+        \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{()}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{flatten} \PYG{o}{=} \PYG{n}{nn}\PYG{o}{.}\PYG{n}{Flatten}\PYG{p}{()}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{net} \PYG{o}{=} \PYG{n}{nn}\PYG{o}{.}\PYG{n}{Sequential}\PYG{p}{(}
+            \PYG{n}{nn}\PYG{o}{.}\PYG{n}{Linear}\PYG{p}{(}\PYG{n}{input\PYGZus{}dim}\PYG{p}{,} \PYG{n}{hidden\PYGZus{}dim}\PYG{p}{),}
+            \PYG{n}{nn}\PYG{o}{.}\PYG{n}{LeakyReLU}\PYG{p}{(),}
+            \PYG{n}{nn}\PYG{o}{.}\PYG{n}{Linear}\PYG{p}{(}\PYG{n}{hidden\PYGZus{}dim}\PYG{p}{,} \PYG{n}{hidden\PYGZus{}dim}\PYG{p}{),}
+            \PYG{n}{nn}\PYG{o}{.}\PYG{n}{LeakyReLU}\PYG{p}{(),}
+            \PYG{n}{nn}\PYG{o}{.}\PYG{n}{Linear}\PYG{p}{(}\PYG{n}{hidden\PYGZus{}dim}\PYG{p}{,} \PYG{n}{output\PYGZus{}dim}\PYG{p}{),}
+        \PYG{p}{)}
+
+    \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{forward}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{x}\PYG{p}{):}
+        \PYG{n}{x} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+        \PYG{n}{logits} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{net}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n}{logits}
+\end{MintedVerbatim}
