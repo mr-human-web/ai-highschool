@@ -351,7 +351,7 @@ Cliquez ensuite sur l'option venv. Une fenêtre va s'ouvrir pour choisir quelle 
 Sur Windows, vous pouvez activer l'environnement virtuel, en ouvrant le terminal de commande (Ctrl+`) et en tappant ".venv/Scripts/activate/". Si vous êtes sur Mac ou Linux, vous devez taper ".venv/bin/activate".
 Une fois l'environnement virtuel activé, installez quelques librairies dont on aura besoin pendant le cours avec la commande 
 \texttt{pip install numpy matplotlib ipykernel torch torchvision} que vous écrirez dans le terminal de commande.
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[scale=0.2]{figures/Screenshot From 2026-10-06 10-53-29.png}
     \caption{Créer un environnement virtuel sur VS Code}
@@ -377,7 +377,7 @@ Il existe plusieurs types de variables en Python,
     \item Les variables qui sont soit \texttt{True}, soit \texttt{False}. Ces variables sont de type \texttt{bool} et sont dites \textit{booléennes}.
 \end{itemize}
 
-En Python, une variable est instantiée via l'opérateur \texttt{=} qui est \textit{un opérateur d'affectation}. Un résumé des différentes variables est donnée \Cref{tab:python_variables} avec un exemple d'instantiation pour chaque type de variable (pour que vous connaissiez la syntaxe associée à chaque type).
+En Python, une variable est instantiée via l'opérateur \texttt{=} qui est \textit{un opérateur d'affectation}. Un résumé des différents types de variables est donnée \Cref{tab:python_variables} avec un exemple d'instantiation pour chaque type de variable (pour que vous connaissiez la syntaxe associée à chaque type).
 
 \begin{table}[h!]
     \centering
@@ -397,15 +397,16 @@ En Python, une variable est instantiée via l'opérateur \texttt{=} qui est \tex
     \label{tab:python_variables}
 \end{table}
 
-Il existe également plusieurs opérations, et donc plusieurs opérateurs en Python. On compte, 
-\begin{enumerate}
+\noindent Il existe également plusieurs opérations, et donc plusieurs opérateurs en Python. On compte, 
+\begin{itemize}
     \item les opérateurs arithmétiques: addition, soustraction, division, puissance, modulo (reste d'une division euclidienne), division entière (quotient d'une division euclidienne)
     \item les opérateurs logiques: \texttt{and}, \texttt{or} et \texttt{not}. Ils sont utilisés pour des opérations entre variables booléennes.
     \item les opérateurs relationnels ou de comparaison: ils permettent de tester des inégalités mathématiques (opérateurs \texttt{>}, \texttt{<}, \texttt{<=}, \texttt{>=}), des égalités (opérateur \texttt{==}), des différences (opérateur \texttt{!=}) ou l'appartenance dans le cas des variables contenant des séquences (opérateur \texttt{in}). Des exemples d'utilisation de ces opérateurs vous sont joints \Cref{tab:ops_comparison}. 
-\end{enumerate}
+    \item les opérateurs d'affectation: ils permettent d'assigner une valeur à une variable. L'opérateur \texttt{=} est le seul opérateur d'affectation en Python. Il est possible de composer l'opération d'affectation avec une opération arithmétique. On obtient alors un opérateur d'affectation qui est dit composé.
+\end{itemize}
 
 
-\begin{table}[h!]
+\begin{table}[t!]
     \centering
     \begin{tabular}{c|c|c}
          Opérateur relationnel & Exemple d'utilisation & Signification\\
@@ -417,12 +418,29 @@ Il existe également plusieurs opérations, et donc plusieurs opérateurs en Pyt
         \texttt{<=}       & \texttt{a <= b} & Teste si $a\leq b$. Retourne \texttt{True} si c'est le cas. \\
         \texttt{==}       &  \texttt{a == b} & Teste si $a=b$. Retourne \texttt{True} si c'est le cas. \\
         \texttt{!=}       & \texttt{a != b} & Teste si $a\neq b$. Retourne \texttt{True} si c'est le cas.\\
-        \texttt{in}       & \texttt{a in b} & Teste si $a$ est contenue  dans la séquence $b$. 
+        \texttt{in}       & \texttt{a in b} & Teste si $a$ est contenue  dans la séquence $b$.
     \end{tabular}
     \caption{Exemple d'utilisation des opérateurs relationnels (ou de comparaison).}
     \label{tab:ops_comparison}
 \end{table}
 
+\begin{table}[b!]
+    \centering
+    \begin{tabular}{c|c|c}
+         Opérateur d'affectation composé & Exemple d'utilisation & Équivalent \\
+        \hline 
+        \hline
+        \texttt{+=}       & \texttt{x += 1} & \texttt{x = x + 1} \\
+        \texttt{-=}       & \texttt{x -= 1} & \texttt{x = x - 1}\\
+        \texttt{/=}       & \texttt{a/= b} & \texttt{a = a / b}\\
+        \texttt{\%=}       & \texttt{a \%= b} & \texttt{a = a \% b}  \\
+        \texttt{//=}       &  \texttt{a //= b} & \texttt{a = a // b}\\
+        \texttt{*=}       & \texttt{a *= b} & \texttt{a = a * b}\\
+        \texttt{**=}       & \texttt{a **= b} & \texttt{a = a ** b} 
+    \end{tabular}
+    \caption{Exemple d'utilisation des opérateurs d'affectation composés.}
+    \label{tab:ops_affectation}
+\end{table}
 Les opérateurs arithmétiques ont des comportements spécifiques lorsqu'utilisé sur des variables correspondant à des chaînes de caractères, ou des séquences (liste et tuple par exemple). 
 
 \subsubsection{Les instructions \texttt{if}, \texttt{elif} et \texttt{else}}
@@ -437,13 +455,13 @@ l'eau est à l'état liquide. On pourrait donc écrire un code comme celui-ci de
 
     if temperature > 100:
         water_state = "gas"
-        # do something 1
+        # do something 
     elif temperature < 0:
         water_state = "solid"
-        # do something 2
+        # do something
     else:
         water_state = "liquid"
-        # do something 3
+        # do something
 \end{minted}
 
 On peut ajouter autant de contraintes nécessaires si on 
@@ -497,7 +515,7 @@ S = \sum_{i=1}^ {4} i
    \begin{minted}{python3}
     s = 0
     N = 200
-    for i in range(N)
+    for i in range(N+1)
         s += (-1) ** (i) / (2 * i + 1)
    \end{minted}
    ce qui est équivalent à évaluer 
@@ -516,16 +534,62 @@ S = \sum_{i=1}^ {4} i
     peut être calculée avec le code suivant
     \begin{minted}{python}
     s = 0
-        for i in range(1, M+1):
-            for j in range(1, N+1):
-                s+= i + j
+    for i in range(1, M+1):
+        for j in range(1, N+1):
+            s+= i + j
     \end{minted}
 \end{example}
 
+\noindent Contrairement à la boucle \texttt{for}, la boucle \texttt{while} est une boucle
+dite conditionnelle --- elle est répétée indéfiniment tant qu'une condition est satisfaite.
+Par exemple, le code suivant,
+\begin{minted}{python3}
+    x = 0
+    while x < 10:
+        print(x)
+        x += 1 
+\end{minted}
+va afficher la valeur de la variable \texttt{x} tant que celle-ci est inférieure à 10. Une fois que \texttt{x} est égale à 10, la condition
+\texttt{x < 10} n'est plus satisfaite et on sort de la boucle conditionnelle.
+\begin{center}
+    \textit{Astuce:} Pour ne pas rester coincé dans une boucle \texttt{while} qui tournerait à l'infini, vous pouvez arrêter l'exécution d'une cellule de code ou d'un fichier script \texttt{.py} avec la commande Ctrl+C.
+\end{center}
+
+\noindent Les boucles conditionnelles vont notamment être utile pour définir des critères d'arrêt d'algorithmes une fois qu'on a atteint une précision numérique que l'on juge raisonnable. 
+
 \subsubsection{Les fonctions et les méthodes}
+
+Les fonctions sont des blocs de code nommés qui permettent d'exécuter un ensemble d'instructions pour effectuer une tâche précise. 
+Il existe un certain nombre de fonctions de base en Python qui sont accessibles en tout temps. 
+En voici quelques exemples qui nous seront utiles:
+\begin{itemize}
+    \item \texttt{print}: la fonction permettant d'afficher la variable donnée en argument. 
+    \item \texttt{input}: la fonction permettant à l'utilisateur d'entrer une variable.
+    \item \texttt{range}: la fonction permettant de créer des suites arithmétiques simplement.
+    \item \texttt{bool}, \texttt{int}, \texttt{tuple}, \texttt{float} etc... : les fonctions de transformation de type qui permettent de changer le type d'une variable.
+    \item \texttt{enumerate}: ... 
+\end{itemize}
+Notez que cette liste est non-exhaustive, il existe beaucoup d'autres fonctions de base en Python mais qui ne nous serons pas utile dans notre cas pour ce cours.
+En termes d'utilisation, une fonction est utilisée comme montrée ci-dessous avec l'exemple de la fonction \texttt{print}
+\begin{minted}{python3}
+    x = 5
+    print(x) # affiche 5
+\end{minted}
+Il sera intéressant pour nous de définir nos propres fonctions. Cela permet d'avoir 
+des blocs de code que l'on définit nous-même et qu'on peut réutiliser à volonté. 
+
 
 \subsubsection{Les erreurs}
 Différents types d'erreurs en python. 
+
+Il est possible de gérer les erreurs avec des commandes comme \texttt{try} et \texttt{except}. 
+Dans le cadre de ce cours, on utilisera parfois la commande \texttt{assert} qui permet d'assurer qu'une variable respecte une certaine condition.
+Par exemple, si on veut qu'un utilisateur entre le nombre d'élèves dans une classe, on pourra faire, 
+\begin{minted}{python}
+    N = int(input("Entrez le nombre d'élèves dans la classe"))
+    assert N > 0
+\end{minted}
+afin de s'assurer que le nombre entré par l'utilisateur est un entier positif. 
 
 \subsubsection{La programmation orientée objet}
 
@@ -1109,13 +1173,87 @@ ou encore,
     &=\frac{1}{\sqrt{h+1}}
     \\
     \theta_{\max}&=\arctan\left(\frac{1}{\sqrt{h+1}}\right)
-    \\
-    \theta_{\max}&= \arctan\left(\frac{v_0}{\sqrt{v_0^2 + 2g y_0}}\right)
 \end{align}
-
-On voit que lorsque $y_0=0$, on obtient bin la solution $\theta_{\max}=\arctan(1)=\frac{\pi}{4}$ comme on a montré précédemment. CQFD !
+En substituant $h=2gy_0/v_0$ et en réarrangeant, on a la réponse finale pour l'angle maximisant la portée dans le cas général, 
+\begin{equation}
+\tcbhighmath{  
+    \theta_{\max}= \arctan\left(\frac{v_0}{\sqrt{v_0^2 + 2g y_0}}\right)
+}
+\end{equation}
+On voit que lorsque $y_0=0$, on obtient bien la solution $\theta_{\max}=\arctan(1)=\frac{\pi}{4}$ comme on a montré précédemment. CQFD !
 
 \subsection{Mouvement d'une charge dans un champ électrique uniforme}
+
+On s'intéresse dans cette section au mouvement d'une charge $q$ dans un champ électrique uniforme,
+\begin{equation}
+    \mathbf{E} = E_0 \hat{\mathbf{x}} \, .
+\end{equation}
+
+\noindent La charge commence son mouvement avec une vitesse initiale $v_0$ et faisant un angle $\theta$ avec la normale. Le vecteur vitesse 
+a donc les conditions initiales suivantes,
+\begin{align}
+ \vec{v}_0\Longrightarrow \begin{cases}
+    v_x(t=0) &= v_0\sin(\theta) 
+    \\
+    v_y(t=0) &=v_0\cos(\theta)
+ \end{cases} \, .
+\end{align}
+On assumera pour ce problème que le vecteur position a pour condition initiale $\vec{r}_0 = (x_0, y_0)=(0,0)$. Une esquisse du problème vous est donnée
+\Cref{fig:charge_in_field}.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.7]{figures/motion_charge.png}
+    \vspace{-0.5cm}
+    \caption{Mouvement d'une charge avec vitesse initiale $\vec{v}_0$ et angle $\theta$ avec la normale dans un champ électrique uniforme.}
+    \label{fig:charge_in_field}
+\end{figure}
+
+\noindent Les objectifs de cette dérivation sont les suivants:
+\begin{itemize}
+    \item Trouver les équations horaires;
+    \item Trouver l'équation de la trajectoire.
+\end{itemize}
+En appliquant les mêmes étapes qu'à la section précédente, on peut trouver une équation pour la portée.
+
+\subsubsection{Équations horaires}
+La dérivation va être très similaire à celle de la section précédente mais je prends le temps de la refaire pour vous montrer qu'on peut 
+réappliquer la même série d'étapes pour un problème en apparence différent. 
+La première étape est de faire le bilan des forces subies par la charge. Dans notre cas, 
+la charge subit seulement la force électromagnétique qui peut être écrite en termes du champ électrique comme, 
+\begin{align}
+    \vec{F}_{em}&=q\vec{E} \, , 
+    \\
+    &= q E_0\hat{\mathbf{x}} \, .
+\end{align}
+
+On applique ensuite la seconde loi de Newton pour obtenir le vecteur accélération, 
+\begin{align}
+    \sum \vec{F} = \vec{F}_{em} = m \vec{a} \Longrightarrow &\begin{cases}ma_x = qE_0 \\ ma_y = 0\end{cases}
+    \\
+    &\begin{cases}
+        a_x &=\displaystyle \frac{q E_0}{m}\\
+        a_y &= 0
+    \end{cases}\, .
+\end{align}
+Une fois le vecteur accélération $\vec{a}(t)$ obtenu, il ne nous reste plus qu'à intégrer deux fois 
+par rapport au temps pour obtenir les équations du vecteur position $\vec{r}(t)$ (et donc les équations horaires).
+
+\noindent Intégrons une première fois pour obtenir les équations du vecteur vitesse. Rappelez-vous que, 
+\begin{align}
+\vec{v}(t)-\vec{v}(t=0) &= \int_0^{t} \vec{a} dt'
+\\
+&= \int_0^{t} \frac{d\vec{v}}{dt'} dt'\, . 
+\end{align}
+En isolant $\vec{v}(t)$, on a 
+\begin{align}
+\vec{v}(t) = \vec{v}(t=0) + \int_0^{t}\vec{a} dt ' \, .
+\end{align}
+On résout ensuite composante par composante pour obtenir $v_x(t)$ et $v_y(t)$.
+Pour la composante en $x$, on a
+\begin{align}
+    \vec{x} = 0
+\end{align}
+
 
 \subsection{Mouvement circulaire uniforme et lois de Kepler}
 

@@ -3,11 +3,11 @@
 
     \PYG{k}{if} \PYG{n}{temperature} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{100}\PYG{p}{:}
         \PYG{n}{water\PYGZus{}state} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}gas\PYGZdq{}}
-        \PYG{c+c1}{\PYGZsh{} do something 1}
+        \PYG{c+c1}{\PYGZsh{} do something}
     \PYG{k}{elif} \PYG{n}{temperature} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{0}\PYG{p}{:}
         \PYG{n}{water\PYGZus{}state} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}solid\PYGZdq{}}
-        \PYG{c+c1}{\PYGZsh{} do something 2}
+        \PYG{c+c1}{\PYGZsh{} do something}
     \PYG{k}{else}\PYG{p}{:}
         \PYG{n}{water\PYGZus{}state} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}liquid\PYGZdq{}}
-        \PYG{c+c1}{\PYGZsh{} do something 3}
+        \PYG{c+c1}{\PYGZsh{} do something}
 \end{MintedVerbatim}
